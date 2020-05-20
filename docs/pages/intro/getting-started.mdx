@@ -1,0 +1,41 @@
+---
+name: Getting Started
+route: /getting-started
+---
+
+# Getting Started
+
+**TODO: Add a note here about how to set Relay up, included the babel configuration it requires.**
+**TODO: Add a not about how the generated files use TypeScript, and so we assume that you have TypeScript set up in your project as well. Link to TS docs about how to set this up if you haven't already.**
+
+Two packages:
+- `svelte-relay` - Provides the core functionality.
+- `relay-compiler-language-svelte` - Provides support
+
+## Installing
+
+To install Svelte Relay into an existing project, you must install the base package, along with the package language to add Svelte support to the Relay Compiler:
+
+```bash
+npm install svelte-relay relay-compiler-language-svelte
+```
+
+## Configuring the Relay Compiler
+
+TODO: Link out to other compiler docs.
+
+While you can configure Relay with CLI arguments, we recommend using the `relay-config` package.
+
+```bash
+npm install relay-config
+```
+
+You can then create a `relay.config.js` file, where you can provide configuration to the relay comiler.
+
+```js
+module.exports = {
+	src: './src',
+	schema: './server/schema.graphql',
+	language: 'svelte'
+};
+```
