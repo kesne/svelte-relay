@@ -10,9 +10,9 @@ import {
 import { getRelayEnvironment } from './context';
 
 export interface QueryResult<TQuery extends OperationType>
-	extends Promise<TQuery['response']>,
-		Readable<Promise<TQuery['response']>> {}
+	extends Readable<Promise<TQuery['response']>> {}
 
+// TODO: Move more stuff in the readable store init:
 export function getQuery<TQuery extends OperationType>(
 	query: GraphQLTaggedNode,
 	variables: TQuery['variables'] = {},
@@ -26,7 +26,6 @@ export function getQuery<TQuery extends OperationType>(
 	const environment = getRelayEnvironment();
 
 	// Fetch the data from the network:
-	// TODO: We also want to subscribe to updates from the store.
 	const request = getRequest(query);
 	const operation = createOperationDescriptor(request, variables);
 	const promise = environment
@@ -35,8 +34,6 @@ export function getQuery<TQuery extends OperationType>(
 		.then(() => {
 			const snapshot = environment.lookup(operation.fragment);
 
-			// TODO: Only set up the subscription when you subscribe via the readable
-			// store, and not via the promise itself.
 			updateSubscription = environment.subscribe(snapshot, (newSnapshot) => {
 				updateStore(Promise.resolve(newSnapshot.data));
 			});
@@ -54,12 +51,12 @@ export function getQuery<TQuery extends OperationType>(
 		};
 	});
 
-	// Return our promise-like store-like interface:
-	return {
-		...promise,
-		then: promise.then.bind(promise),
-		catch: promise.catch.bind(promise),
-		finally: promise.finally.bind(promise),
-		subscribe: dataStore.subscribe.bind(dataStore),
+	// @ts-ignore: Adding to improve the UX if users mis-use the API:
+	dataStore.then = () => {
+		throw new Error(
+			'It looks like you tried to use the result of `getQuery()` directly in an #await block. Ensure that the `getQuery()` result is prefixed with `$` so that you subscribe to the latest store value. Further reading: https://svelte.dev/tutorial/auto-subscriptions',
+		);
 	};
+
+	return dataStore;
 }

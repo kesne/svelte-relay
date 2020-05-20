@@ -38,7 +38,6 @@
 
 <button on:click={refetch}>Refetch</button>
 
-<!-- TODO: Change to $query when the language server supports it: -->
 {#await $query}
 	<p>...waiting</p>
 {:then data}

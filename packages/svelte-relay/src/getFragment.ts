@@ -9,10 +9,12 @@ interface KeyType {
 	readonly ' $data'?: unknown;
 }
 
+export type FragmentResult<TKey extends KeyType> = Readable<$Call<KeyReturnType<TKey>>>;
+
 export function getFragment<TKey extends KeyType>(
 	fragmentInput: GraphQLTaggedNode,
 	fragmentRef: TKey,
-): Readable<$Call<KeyReturnType<TKey>>> {
+): FragmentResult<TKey> {
 	const environment = getRelayEnvironment();
 
 	// TODO: Actually get store updates:
@@ -24,10 +26,12 @@ export function getFragment<TKey extends KeyType>(
 			fragmentSelector.kind === 'PluralReaderSelector'
 				? fragmentSelector.selectors.map((s) => environment.lookup(s))
 				: environment.lookup(fragmentSelector);
+
 		const fragmentOwner =
 			fragmentSelector.kind === 'PluralReaderSelector'
 				? fragmentSelector.selectors[0].owner
 				: fragmentSelector.owner;
+
 		const parentQueryName = fragmentOwner.node.params.name ?? 'Unknown Parent Query';
 
 		set(snapshot.data);
