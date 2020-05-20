@@ -2,6 +2,6 @@
 	"compilerOptions": {
 		"strict": true,
 		"esModuleInterop": true,
-		"lib": ["ESNext", "DOM"]
+		"lib": ["esnext", "dom"]
 	}
 }
