@@ -6,7 +6,7 @@ export default graphql`
 			edges {
 				node {
 					id
-					title
+					...MovieFragment_film
 				}
 			}
 		}

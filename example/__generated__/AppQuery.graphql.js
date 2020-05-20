@@ -8,13 +8,14 @@
 
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
+type MovieFragment_film$ref = any;
 export type AppQueryVariables = {||};
 export type AppQueryResponse = {|
   +allFilms: ?{|
     +edges: ?$ReadOnlyArray<?{|
       +node: ?{|
         +id: string,
-        +title: ?string,
+        +$fragmentRefs: MovieFragment_film$ref,
       |}
     |}>
   |}
@@ -32,51 +33,64 @@ query AppQuery {
     edges {
       node {
         id
-        title
+        ...MovieFragment_film
       }
     }
   }
 }
+
+fragment MovieFragment_film on Film {
+  title
+  releaseDate
+}
 */
 
 const node/*: ConcreteRequest*/ = (function(){
-var v0 = [
-  {
-    "alias": null,
-    "args": null,
-    "concreteType": "FilmsConnection",
-    "kind": "LinkedField",
-    "name": "allFilms",
-    "plural": false,
+var v0 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+};
+return {
+  "fragment": {
+    "argumentDefinitions": [],
+    "kind": "Fragment",
+    "metadata": null,
+    "name": "AppQuery",
     "selections": [
       {
         "alias": null,
         "args": null,
-        "concreteType": "FilmsEdge",
+        "concreteType": "FilmsConnection",
         "kind": "LinkedField",
-        "name": "edges",
-        "plural": true,
+        "name": "allFilms",
+        "plural": false,
         "selections": [
           {
             "alias": null,
             "args": null,
-            "concreteType": "Film",
+            "concreteType": "FilmsEdge",
             "kind": "LinkedField",
-            "name": "node",
-            "plural": false,
+            "name": "edges",
+            "plural": true,
             "selections": [
               {
                 "alias": null,
                 "args": null,
-                "kind": "ScalarField",
-                "name": "id",
-                "storageKey": null
-              },
-              {
-                "alias": null,
-                "args": null,
-                "kind": "ScalarField",
-                "name": "title",
+                "concreteType": "Film",
+                "kind": "LinkedField",
+                "name": "node",
+                "plural": false,
+                "selections": [
+                  (v0/*: any*/),
+                  {
+                    "args": null,
+                    "kind": "FragmentSpread",
+                    "name": "MovieFragment_film"
+                  }
+                ],
                 "storageKey": null
               }
             ],
@@ -86,16 +100,6 @@ var v0 = [
         "storageKey": null
       }
     ],
-    "storageKey": null
-  }
-];
-return {
-  "fragment": {
-    "argumentDefinitions": [],
-    "kind": "Fragment",
-    "metadata": null,
-    "name": "AppQuery",
-    "selections": (v0/*: any*/),
     "type": "Root"
   },
   "kind": "Request",
@@ -103,18 +107,67 @@ return {
     "argumentDefinitions": [],
     "kind": "Operation",
     "name": "AppQuery",
-    "selections": (v0/*: any*/)
+    "selections": [
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "FilmsConnection",
+        "kind": "LinkedField",
+        "name": "allFilms",
+        "plural": false,
+        "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "FilmsEdge",
+            "kind": "LinkedField",
+            "name": "edges",
+            "plural": true,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": "Film",
+                "kind": "LinkedField",
+                "name": "node",
+                "plural": false,
+                "selections": [
+                  (v0/*: any*/),
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "title",
+                    "storageKey": null
+                  },
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "releaseDate",
+                    "storageKey": null
+                  }
+                ],
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
+          }
+        ],
+        "storageKey": null
+      }
+    ]
   },
   "params": {
     "id": null,
     "metadata": {},
     "name": "AppQuery",
     "operationKind": "query",
-    "text": "query AppQuery {\n  allFilms {\n    edges {\n      node {\n        id\n        title\n      }\n    }\n  }\n}\n"
+    "text": "query AppQuery {\n  allFilms {\n    edges {\n      node {\n        id\n        ...MovieFragment_film\n      }\n    }\n  }\n}\n\nfragment MovieFragment_film on Film {\n  title\n  releaseDate\n}\n"
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = 'eb5af8226a95992e7e940e1de5f8a65c';
+(node/*: any*/).hash = '6910d593355ce75e41f1058681d8decb';
 
 module.exports = node;
