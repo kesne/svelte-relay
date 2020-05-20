@@ -11,3 +11,4 @@
 	- Use the code and type generation provided by the Relay Compiler.
 		   - **Eventually** we will build a language extension for the Relay Compiler, but for now we will not, so all GraphQL queries will be kept in separate .js files.
 2. Design the API. We'll do this by actually using the API, and we will MOCK the **implemention**.
+3. Implement as quickly as possible.

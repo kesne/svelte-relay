@@ -1,8 +1,11 @@
 <script>
 	import { readable } from 'svelte/store';
-	import { getQuery } from '../src/';
+	import { getQuery, setRelayEnvironment } from '../src/';
 	import AppQuery from './AppQuery';
 	import Movie from './Movie.svelte';
+	import environment from './environment';
+
+	setRelayEnvironment(environment);
 
 	// const promise = getQuery(AppQuery);
 
