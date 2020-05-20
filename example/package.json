@@ -1,21 +1,29 @@
 {
-  "name": "example",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "scripts": {
-    "start": "parcel ./src/index.html"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.9.6",
-    "parcel-bundler": "^1.12.4",
-    "parcel-plugin-svelte": "^4.0.6",
-    "relay-config": "^9.1.0"
-  },
-  "dependencies": {
-    "babel-plugin-relay": "^9.1.0",
-    "relay-compiler": "^9.1.0",
-    "relay-runtime": "^9.1.0",
-    "svelte": "^3.22.3"
-  }
+	"name": "example",
+	"version": "1.0.0",
+	"main": "index.js",
+	"license": "MIT",
+	"scripts": {
+		"start": "parcel ./src/index.html"
+	},
+	"dependencies": {
+		"@babel/core": "^7.9.6",
+		"@babel/polyfill": "^7.8.7",
+		"@babel/preset-env": "^7.9.6",
+		"@babel/preset-typescript": "^7.9.0",
+		"apollo-server": "^2.13.1",
+		"babel-loader": "^8.1.0",
+		"babel-plugin-relay": "^9.1.0",
+		"graphql": "^15.0.0",
+		"html-webpack-plugin": "^4.3.0",
+		"relay-compiler": "^9.1.0",
+		"relay-config": "^9.1.0",
+		"relay-runtime": "^9.1.0",
+		"svelte": "^3.22.3",
+		"svelte-loader": "^2.13.6",
+		"svelte-preprocess": "^3.7.4",
+		"webpack": "^4.43.0",
+		"webpack-cli": "^3.3.11",
+		"webpack-dev-server": "^3.11.0"
+	}
 }

@@ -1,19 +1,41 @@
 import { Readable, readable } from 'svelte/store';
-import { OperationType, GraphQLTaggedNode, fetchQuery } from 'relay-runtime';
+import {
+	OperationType,
+	GraphQLTaggedNode,
+	fetchQuery,
+	createOperationDescriptor,
+	getRequest,
+} from 'relay-runtime';
 import { getRelayEnvironment } from './context';
 
-interface QueryPromiseStore<T> extends Promise<T>, Readable<Promise<T>> {}
+export interface QueryResult<T> extends Promise<T>, Readable<Promise<T>> {}
 
 export function getQuery<TQuery extends OperationType>(
 	query: GraphQLTaggedNode,
 	variables: TQuery['variables'] = {},
-): QueryPromiseStore<TQuery['response']> {
+): QueryResult<TQuery['response']> {
 	// Get the current Relay envrionment:
 	const environment = getRelayEnvironment();
 
 	// Fetch the data from the network:
 	// TODO: We also want to subscribe to updates from the store.
-	const promise = fetchQuery(environment, query, variables);
+	const request = getRequest(query);
+	const operation = createOperationDescriptor(request, variables);
+	const promise = environment
+		.execute({ operation })
+		.toPromise()
+		.then(() => {
+			const snapshot = environment.lookup(operation.fragment);
+
+			environment.subscribe(snapshot, () => {
+				console.log('DATA UPDATED');
+			});
+
+			return snapshot.data;
+		});
+
+	// Retain the operation:
+	const retained = environment.retain(operation);
 
 	// Create the store that the UI can subscribe to get real-time updates:
 	let updateStore: (data: any) => void;
@@ -28,7 +50,13 @@ export function getQuery<TQuery extends OperationType>(
 		catch: promise.catch.bind(promise),
 		finally: promise.finally.bind(promise),
 		subscribe(...args) {
-			return dataStore.subscribe(...args);
+			const unsubscribe = dataStore.subscribe(...args);
+
+			return () => {
+				console.log('dump');
+				retained.dispose();
+				unsubscribe();
+			};
 		},
 	};
 }
