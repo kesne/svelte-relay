@@ -8,7 +8,7 @@ This package is still a work in progress, and is missing many key features.
 
 ### 1. Set the Relay Environment into the context
 
-```html
+```svelte
 <script>
 	import { setRelayEnvironment } from 'svelte-relay';
 	import myEnvironment from './environment';
@@ -19,7 +19,7 @@ This package is still a work in progress, and is missing many key features.
 
 ### 2. Write Queries
 
-```html
+```svelte
 <script>
 	import { getQuery } from 'svelte-relay';
 	// This is defined in the next section below.
@@ -52,7 +52,7 @@ This package is still a work in progress, and is missing many key features.
 
 ### 3. Use Fragments
 
-```html
+```svelte
 <script>
 	import { getFragment } from 'svelte-relay';
 
