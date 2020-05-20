@@ -10,11 +10,19 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "graphql": "^14.6.0",
     "relay-runtime": "^9.1.0",
     "svelte": "^3.22.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.6",
     "@types/relay-runtime": "^8.0.9",
-    "prettier": "^2.0.5"
+    "babel-plugin-relay": "^9.1.0",
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-svelte": "^4.0.6",
+    "prettier": "^2.0.5",
+    "relay-compiler": "^9.1.0",
+    "relay-config": "^9.1.0",
+    "typescript": "^3.9.2"
   }
 }
