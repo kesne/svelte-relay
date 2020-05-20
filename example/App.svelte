@@ -1,23 +1,36 @@
-<script>
-	import { readable } from 'svelte/store';
-	import { getQuery, setRelayEnvironment } from '../src/';
-	import AppQuery from './AppQuery';
+<script type="typescript">
+	import { getQuery, setRelayEnvironment, graphql } from '../src';
 	import Movie from './Movie.svelte';
 	import environment from './environment';
+	import { AppQuery } from './__generated__/AppQuery.graphql';
 
 	setRelayEnvironment(environment);
 
-	const query = getQuery(AppQuery);
+	const query = getQuery<AppQuery>(graphql`
+		query AppQuery {
+			allFilms {
+				edges {
+					node {
+						id
+						...MovieFragment_film
+					}
+				}
+			}
+		}
+	`);
 </script>
 
 <h1>Svelte Relay</h1>
 
+<!-- TODO: Change to $query when the language server supports it: -->
 {#await query}
 	<p>...waiting</p>
-{:then}
+{:then data}
 	<ul>
-		{#each $query.allFilms.edges as edge}
-			<Movie movie={edge.node} />
+		{#each (data.allFilms || {}).edges || [] as edge}
+			{#if edge && edge.node}
+				<Movie movie={edge.node} />
+			{/if}
 		{/each}
 	</ul>
 {:catch error}

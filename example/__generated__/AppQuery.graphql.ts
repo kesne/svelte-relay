@@ -1,30 +1,24 @@
-/**
- * @flow
- */
-
+/* tslint:disable */
 /* eslint-disable */
 
-'use strict';
+import { ConcreteRequest } from "relay-runtime";
+import { FragmentRefs } from "relay-runtime";
+export type AppQueryVariables = {};
+export type AppQueryResponse = {
+    readonly allFilms: {
+        readonly edges: ReadonlyArray<{
+            readonly node: {
+                readonly id: string;
+                readonly " $fragmentRefs": FragmentRefs<"MovieFragment_film">;
+            } | null;
+        } | null> | null;
+    } | null;
+};
+export type AppQuery = {
+    readonly response: AppQueryResponse;
+    readonly variables: AppQueryVariables;
+};
 
-/*::
-import type { ConcreteRequest } from 'relay-runtime';
-type MovieFragment_film$ref = any;
-export type AppQueryVariables = {||};
-export type AppQueryResponse = {|
-  +allFilms: ?{|
-    +edges: ?$ReadOnlyArray<?{|
-      +node: ?{|
-        +id: string,
-        +$fragmentRefs: MovieFragment_film$ref,
-      |}
-    |}>
-  |}
-|};
-export type AppQuery = {|
-  variables: AppQueryVariables,
-  response: AppQueryResponse,
-|};
-*/
 
 
 /*
@@ -45,7 +39,7 @@ fragment MovieFragment_film on Film {
 }
 */
 
-const node/*: ConcreteRequest*/ = (function(){
+const node: ConcreteRequest = (function(){
 var v0 = {
   "alias": null,
   "args": null,
@@ -167,7 +161,5 @@ return {
   }
 };
 })();
-// prettier-ignore
-(node/*: any*/).hash = '6910d593355ce75e41f1058681d8decb';
-
-module.exports = node;
+(node as any).hash = '6910d593355ce75e41f1058681d8decb';
+export default node;
