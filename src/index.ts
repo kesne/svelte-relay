@@ -10,9 +10,4 @@ export function getFragment(fragment: any) {
 	return data.allFilms.edges[0].node;
 }
 
-export function getQuery(query: any) {
-	return {
-		then(resolved: any, rejected: any) {},
-		subscribe(...args: any) {},
-	};
-}
+export { getQuery } from './getQuery';

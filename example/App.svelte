@@ -7,15 +7,6 @@
 
 	setRelayEnvironment(environment);
 
-	// const promise = getQuery(AppQuery);
-
-	// IDEA 1: Hooks-like design:
-	// const { data, loading, error } = getQuery(AppQuery);
-
-	// IDEA 2: Up-front provide a readable store for updated data:
-	// const [promise, data] = getQuery(AppQuery);
-
-	// IDEA 3: We do something a little bonkers
 	const query = getQuery(AppQuery);
 </script>
 
