@@ -1,5 +1,5 @@
 import { Readable, readable } from 'svelte/store';
-import { OperationType, GraphQLTaggedNode, fetchQuery } from 'relay-runtime';
+import { OperationType, GraphQLTaggedNode, fetchQuery, getRequest, createOperationDescriptor } from 'relay-runtime';
 import { getRelayEnvironment } from './context';
 
 interface QueryPromiseStore<T> extends PromiseLike<T>, Readable<T> {}
@@ -18,6 +18,7 @@ export function getQuery<TQuery extends OperationType>(
 	const environment = getRelayEnvironment();
 
 	// Fetch the data from the network:
+	// TODO: We also want to subscribe to updates from the store.
 	const promise = fetchQuery(environment, query, variables).then((data) => {
 		updateStore(data);
 		return data;

@@ -17,7 +17,7 @@
 {:then}
 	<ul>
 		{#each $query.allFilms.edges as edge}
-			<Movie />
+			<Movie movie={edge.node} />
 		{/each}
 	</ul>
 {:catch error}
