@@ -1,6 +1,13 @@
 {
-  "name": "svelte-relay",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT"
+	"name": "svelte-relay",
+	"version": "0.0.0",
+	"main": "lib/index.js",
+	"license": "MIT",
+	"scripts": {
+		"build": "tsc"
+	},
+	"dependencies": {
+		"relay-runtime": "^9.1.0",
+		"svelte": "^3.22.3"
+	}
 }

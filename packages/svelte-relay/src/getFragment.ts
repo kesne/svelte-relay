@@ -1,6 +1,6 @@
 import { GraphQLTaggedNode, getFragment as relayGetFragment, getSelector } from 'relay-runtime';
-import { getRelayEnvironment } from './context';
 import { Readable, readable } from 'svelte/store';
+import { getRelayEnvironment } from './context';
 
 type $Call<Fn extends (...args: any[]) => any> = Fn extends (arg: any) => infer RT ? RT : never;
 type KeyReturnType<T extends KeyType> = (arg: T) => NonNullable<T[' $data']>;
