@@ -1,12 +1,18 @@
 {
-  "name": "relay-compiler-language-svelte",
-  "version": "1.0.0",
-  "main": "lib/index.js",
-  "license": "MIT",
-  "dependencies": {
-    "@types/relay-compiler": "^8.0.0",
-    "relay-compiler": "^9.1.0",
-    "relay-compiler-language-typescript": "^12.0.2",
-    "svelte": "^3.22.3"
-  }
+	"name": "relay-compiler-language-svelte",
+	"version": "0.0.0",
+	"main": "lib/index.js",
+	"license": "MIT",
+	"scripts": {
+		"build": "tsc"
+	},
+	"dependencies": {
+		"relay-compiler": "^9.1.0",
+		"relay-compiler-language-typescript": "^12.0.2",
+		"relay-runtime": "^9.1.0",
+		"svelte": "^3.22.3"
+	},
+	"devDependencies": {
+		"@types/relay-compiler": "^8.0.0"
+	}
 }

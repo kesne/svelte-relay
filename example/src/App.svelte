@@ -1,5 +1,5 @@
 <script type="typescript">
-	import { getQuery, setRelayEnvironment, graphql } from '../src';
+	import { getQuery, setRelayEnvironment, graphql } from 'svelte-relay';
 	import Movie from './Movie.svelte';
 	import environment from './environment';
 	import { AppQuery } from './__generated__/AppQuery.graphql';

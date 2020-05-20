@@ -1,0 +1,21 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "parcel ./src/index.html"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-svelte": "^4.0.6",
+    "relay-config": "^9.1.0"
+  },
+  "dependencies": {
+    "babel-plugin-relay": "^9.1.0",
+    "relay-compiler": "^9.1.0",
+    "relay-runtime": "^9.1.0",
+    "svelte": "^3.22.3"
+  }
+}

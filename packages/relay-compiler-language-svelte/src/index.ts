@@ -6,7 +6,7 @@ export default function plugin(): PluginInterface {
 	const tsPlugin = typescriptPlugin();
 
 	return {
-		inputExtensions: ['svelte'],
+		inputExtensions: ['svelte', 'ts', 'tsx'],
 		outputExtension: 'ts',
 		findGraphQLTags: createFinder(tsPlugin.findGraphQLTags),
 		formatModule: tsPlugin.formatModule,
