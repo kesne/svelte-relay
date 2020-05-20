@@ -3,7 +3,7 @@
 A language plugin for [Relay](https://relay.dev/) that adds
 [Svelte](https://svelte.dev/) support, and emits TypeScript type definitions.
 
-This plugin is based on the `[relay-compiler-language-typescript](https://github.com/relay-tools/relay-compiler-language-typescript)` package.
+This plugin is based on the [`relay-compiler-language-typescript`](https://github.com/relay-tools/relay-compiler-language-typescript) package.
 
 ## Installation
 
