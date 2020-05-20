@@ -5,14 +5,15 @@ import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type AppQueryVariables = {};
 export type AppQueryResponse = {
-    readonly allFilms: {
-        readonly edges: ReadonlyArray<{
-            readonly node: {
-                readonly id: string;
-                readonly " $fragmentRefs": FragmentRefs<"MovieFragment_film">;
-            } | null;
-        } | null> | null;
-    } | null;
+    readonly viewer: {
+        readonly id: string;
+        readonly firstName: string;
+        readonly lastName: string;
+        readonly randomNumber: number;
+    };
+    readonly books: ReadonlyArray<{
+        readonly " $fragmentRefs": FragmentRefs<"BookFragment_book">;
+    }>;
 };
 export type AppQuery = {
     readonly response: AppQueryResponse;
@@ -23,19 +24,20 @@ export type AppQuery = {
 
 /*
 query AppQuery {
-  allFilms {
-    edges {
-      node {
-        id
-        ...MovieFragment_film
-      }
-    }
+  viewer {
+    id
+    firstName
+    lastName
+    randomNumber
+  }
+  books {
+    ...BookFragment_book
   }
 }
 
-fragment MovieFragment_film on Film {
+fragment BookFragment_book on Book {
   title
-  releaseDate
+  author
 }
 */
 
@@ -43,8 +45,40 @@ const node: ConcreteRequest = (function(){
 var v0 = {
   "alias": null,
   "args": null,
-  "kind": "ScalarField",
-  "name": "id",
+  "concreteType": "User",
+  "kind": "LinkedField",
+  "name": "viewer",
+  "plural": false,
+  "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "id",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "firstName",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "lastName",
+      "storageKey": null
+    },
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "randomNumber",
+      "storageKey": null
+    }
+  ],
   "storageKey": null
 };
 return {
@@ -54,47 +88,25 @@ return {
     "metadata": null,
     "name": "AppQuery",
     "selections": [
+      (v0/*: any*/),
       {
         "alias": null,
         "args": null,
-        "concreteType": "FilmsConnection",
+        "concreteType": "Book",
         "kind": "LinkedField",
-        "name": "allFilms",
-        "plural": false,
+        "name": "books",
+        "plural": true,
         "selections": [
           {
-            "alias": null,
             "args": null,
-            "concreteType": "FilmsEdge",
-            "kind": "LinkedField",
-            "name": "edges",
-            "plural": true,
-            "selections": [
-              {
-                "alias": null,
-                "args": null,
-                "concreteType": "Film",
-                "kind": "LinkedField",
-                "name": "node",
-                "plural": false,
-                "selections": [
-                  (v0/*: any*/),
-                  {
-                    "args": null,
-                    "kind": "FragmentSpread",
-                    "name": "MovieFragment_film"
-                  }
-                ],
-                "storageKey": null
-              }
-            ],
-            "storageKey": null
+            "kind": "FragmentSpread",
+            "name": "BookFragment_book"
           }
         ],
         "storageKey": null
       }
     ],
-    "type": "Root"
+    "type": "Query"
   },
   "kind": "Request",
   "operation": {
@@ -102,49 +114,27 @@ return {
     "kind": "Operation",
     "name": "AppQuery",
     "selections": [
+      (v0/*: any*/),
       {
         "alias": null,
         "args": null,
-        "concreteType": "FilmsConnection",
+        "concreteType": "Book",
         "kind": "LinkedField",
-        "name": "allFilms",
-        "plural": false,
+        "name": "books",
+        "plural": true,
         "selections": [
           {
             "alias": null,
             "args": null,
-            "concreteType": "FilmsEdge",
-            "kind": "LinkedField",
-            "name": "edges",
-            "plural": true,
-            "selections": [
-              {
-                "alias": null,
-                "args": null,
-                "concreteType": "Film",
-                "kind": "LinkedField",
-                "name": "node",
-                "plural": false,
-                "selections": [
-                  (v0/*: any*/),
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "title",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "releaseDate",
-                    "storageKey": null
-                  }
-                ],
-                "storageKey": null
-              }
-            ],
+            "kind": "ScalarField",
+            "name": "title",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "author",
             "storageKey": null
           }
         ],
@@ -157,9 +147,9 @@ return {
     "metadata": {},
     "name": "AppQuery",
     "operationKind": "query",
-    "text": "query AppQuery {\n  allFilms {\n    edges {\n      node {\n        id\n        ...MovieFragment_film\n      }\n    }\n  }\n}\n\nfragment MovieFragment_film on Film {\n  title\n  releaseDate\n}\n"
+    "text": "query AppQuery {\n  viewer {\n    id\n    firstName\n    lastName\n    randomNumber\n  }\n  books {\n    ...BookFragment_book\n  }\n}\n\nfragment BookFragment_book on Book {\n  title\n  author\n}\n"
   }
 };
 })();
-(node as any).hash = '6910d593355ce75e41f1058681d8decb';
+(node as any).hash = 'ee5e0ce7ebd4c549558326c856e30eda';
 export default node;

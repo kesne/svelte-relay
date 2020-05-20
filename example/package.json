@@ -4,7 +4,7 @@
 	"main": "index.js",
 	"license": "MIT",
 	"scripts": {
-		"start": "parcel ./src/index.html"
+		"start": "webpack-dev-server"
 	},
 	"dependencies": {
 		"@babel/core": "^7.9.6",

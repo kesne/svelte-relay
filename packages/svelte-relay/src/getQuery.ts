@@ -2,18 +2,26 @@ import { Readable, readable } from 'svelte/store';
 import {
 	OperationType,
 	GraphQLTaggedNode,
-	fetchQuery,
 	createOperationDescriptor,
 	getRequest,
+	Disposable,
+	SelectorData,
 } from 'relay-runtime';
 import { getRelayEnvironment } from './context';
 
-export interface QueryResult<T> extends Promise<T>, Readable<Promise<T>> {}
+export interface QueryResult<TQuery extends OperationType>
+	extends Promise<TQuery['response']>,
+		Readable<Promise<TQuery['response']>> {}
 
 export function getQuery<TQuery extends OperationType>(
 	query: GraphQLTaggedNode,
 	variables: TQuery['variables'] = {},
-): QueryResult<TQuery['response']> {
+): QueryResult<TQuery> {
+	// The subscription for when the data in the store is updated:
+	let updateSubscription: Disposable;
+	// Used to update the store when new data from the cache is provided:
+	let updateStore: (data: Promise<SelectorData>) => void;
+
 	// Get the current Relay envrionment:
 	const environment = getRelayEnvironment();
 
@@ -27,20 +35,23 @@ export function getQuery<TQuery extends OperationType>(
 		.then(() => {
 			const snapshot = environment.lookup(operation.fragment);
 
-			environment.subscribe(snapshot, () => {
-				console.log('DATA UPDATED');
+			// TODO: Only set up the subscription when you subscribe via the readable
+			// store, and not via the promise itself.
+			updateSubscription = environment.subscribe(snapshot, (newSnapshot) => {
+				updateStore(Promise.resolve(newSnapshot.data));
 			});
 
 			return snapshot.data;
 		});
 
-	// Retain the operation:
-	const retained = environment.retain(operation);
-
 	// Create the store that the UI can subscribe to get real-time updates:
-	let updateStore: (data: any) => void;
 	const dataStore = readable(promise, (set) => {
 		updateStore = set;
+		return () => {
+			if (updateSubscription) {
+				updateSubscription.dispose();
+			}
+		};
 	});
 
 	// Return our promise-like store-like interface:
@@ -49,14 +60,6 @@ export function getQuery<TQuery extends OperationType>(
 		then: promise.then.bind(promise),
 		catch: promise.catch.bind(promise),
 		finally: promise.finally.bind(promise),
-		subscribe(...args) {
-			const unsubscribe = dataStore.subscribe(...args);
-
-			return () => {
-				console.log('dump');
-				retained.dispose();
-				unsubscribe();
-			};
-		},
+		subscribe: dataStore.subscribe.bind(dataStore),
 	};
 }

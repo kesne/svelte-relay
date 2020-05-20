@@ -15,4 +15,4 @@
 	);
 </script>
 
-<li>{$data.title} ({$data.releaseDate})</li>
+<li>{$data.title} ({$data.author})</li>

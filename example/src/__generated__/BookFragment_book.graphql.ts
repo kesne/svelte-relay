@@ -3,15 +3,15 @@
 
 import { ReaderFragment } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
-export type MovieFragment_film = {
-    readonly title: string | null;
-    readonly releaseDate: string | null;
-    readonly " $refType": "MovieFragment_film";
+export type BookFragment_book = {
+    readonly title: string;
+    readonly author: string;
+    readonly " $refType": "BookFragment_book";
 };
-export type MovieFragment_film$data = MovieFragment_film;
-export type MovieFragment_film$key = {
-    readonly " $data"?: MovieFragment_film$data;
-    readonly " $fragmentRefs": FragmentRefs<"MovieFragment_film">;
+export type BookFragment_book$data = BookFragment_book;
+export type BookFragment_book$key = {
+    readonly " $data"?: BookFragment_book$data;
+    readonly " $fragmentRefs": FragmentRefs<"BookFragment_book">;
 };
 
 
@@ -20,7 +20,7 @@ const node: ReaderFragment = {
   "argumentDefinitions": [],
   "kind": "Fragment",
   "metadata": null,
-  "name": "MovieFragment_film",
+  "name": "BookFragment_book",
   "selections": [
     {
       "alias": null,
@@ -33,11 +33,11 @@ const node: ReaderFragment = {
       "alias": null,
       "args": null,
       "kind": "ScalarField",
-      "name": "releaseDate",
+      "name": "author",
       "storageKey": null
     }
   ],
-  "type": "Film"
+  "type": "Book"
 };
-(node as any).hash = 'a7d55299dad40c357b4d848088fbe9f9';
+(node as any).hash = '6944f9abe038dabd5c33731d0328d150';
 export default node;
