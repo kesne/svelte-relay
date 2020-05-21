@@ -1,10 +1,6 @@
 ---
-name: Making Queries
-route: /usage/making-queries
-menu: Using Svelte Relay
+title: Making Queries
 ---
-
-# Making Queries
 
 A GraphQL query is a request that can be sent to a GraphQL server in combination with a set of variables, in order to fetch some data. It consists of a selection of fields, and potentially includes other fragments.
 

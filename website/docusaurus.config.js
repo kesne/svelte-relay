@@ -7,6 +7,7 @@ module.exports = {
 	organizationName: 'kesne', // Usually your GitHub org/user name.
 	projectName: 'svelte-relay', // Usually your repo name.
 	themeConfig: {
+		sidebarCollapsible: false,
 		navbar: {
 			title: 'Svelte Relay',
 			logo: {
@@ -15,7 +16,7 @@ module.exports = {
 			},
 			links: [
 				{
-					to: 'docs/',
+					to: 'docs/getting-started',
 					activeBasePath: 'docs',
 					label: 'Docs',
 					position: 'left',
@@ -78,11 +79,8 @@ module.exports = {
 			'@docusaurus/preset-classic',
 			{
 				docs: {
-					// It is recommended to set document id as docs home page (`docs/` path).
-					homePageId: 'doc1',
 					sidebarPath: require.resolve('./sidebars.js'),
-					// Please change this to your repo.
-					editUrl: 'https://github.com/kesne/svelte-relay/edit/master/docs/',
+					editUrl: 'https://github.com/kesne/svelte-relay/edit/master/website/',
 				},
 				theme: {
 					customCss: require.resolve('./src/css/custom.css'),

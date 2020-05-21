@@ -1,9 +1,6 @@
 ---
-name: Getting Started
-route: /
+title: Getting Started
 ---
-
-# Getting Started
 
 Before getting started, it is best to understand the core concepts of Realy. It is likely best to read the [Relay Getting Started guide](https://relay.dev/docs/en/quick-start-guide) to familiarize yourself with Relay.
 

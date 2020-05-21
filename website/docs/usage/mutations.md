@@ -1,10 +1,6 @@
 ---
-name: Mutations
-route: /usage/mutations
-menu: Using Svelte Relay
+title: Mutations
 ---
-
-# Mutations
 
 In GraphQL, data in the server is updated using GraphQL Mutations. Mutations are read-write server operations, which both modify data in the backend, and allow querying for the modified data from the server in the same request.
 
