@@ -1,8 +1,8 @@
 module.exports = {
 	title: 'Svelte Relay',
 	tagline: 'Easily use GraphQL in Svelte, powered by the production-ready Relay runtime.',
-	url: 'https://your-docusaurus-test-site.com',
-	baseUrl: '/',
+	url: 'https://kesne.github.io/',
+	baseUrl: '/svelte-relay/',
 	favicon: 'img/favicon.ico',
 	organizationName: 'kesne', // Usually your GitHub org/user name.
 	projectName: 'svelte-relay', // Usually your repo name.
