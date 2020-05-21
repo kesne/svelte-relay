@@ -1,11 +1,9 @@
-<h1 align="center">Svelte Relay</p>
+<h1 align="center">Svelte Relay</h1>
 <p align="center">
-	<img src="https://raw.githubusercontent.com/kesne/svelte-relay/master/website/static/img/svelte-relay-logo.png" alt="Svelte Relay Logo" />
+	<img width="200" src="https://raw.githubusercontent.com/kesne/svelte-relay/master/website/static/img/svelte-relay-logo.png" alt="Svelte Relay Logo" />
 </p>
 
 [Relay](https://relay.dev) bindings for [Svelte](https://svelte.dev).
-
-This package is still a work in progress, and is missing many key features.
 
 ## Example
 
