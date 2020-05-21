@@ -7,6 +7,7 @@
 	import { fetchQuery } from 'relay-runtime';
 	import Book from './Book.svelte';
 	import User from './User.svelte';
+	import Mutate from './Mutate.svelte';
 	import environment from './environment';
 	import { AppQuery } from './__generated__/AppQuery.graphql';
 
@@ -36,6 +37,8 @@
 </script>
 
 <h1>Svelte Relay</h1>
+
+<Mutate />
 
 <button on:click={refetch}>Refetch</button>
 

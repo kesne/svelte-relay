@@ -14,3 +14,7 @@ type Query {
 	viewer: User!
 	books: [Book!]!
 }
+
+type Mutation {
+	doSomethingToUser: User!
+}

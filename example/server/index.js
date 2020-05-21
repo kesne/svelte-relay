@@ -13,16 +13,21 @@ const books = [
 	},
 ];
 
+const user = {
+	id: 1,
+	firstName: 'Jordan',
+	lastName: 'Gensler',
+};
+
 const typeDefs = gql(fs.readFileSync(path.join(__dirname, 'schema.graphql'), 'utf8'));
 
 const resolvers = {
 	Query: {
 		books: () => books,
-		viewer: () => ({
-			id: 1,
-			firstName: 'Jordan',
-			lastName: 'Gensler',
-		}),
+		viewer: () => user,
+	},
+	Mutation: {
+		doSomethingToUser: () => user,
 	},
 	User: {
 		randomNumber: () => Math.random(),

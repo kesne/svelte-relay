@@ -24,21 +24,21 @@ function isPluralSelector(selector: ReaderSelector): selector is PluralReaderSel
 
 // TODO: Handle fragments isMissingData.
 export function getFragment<TKey extends KeyType>(
-	fragmentInput: GraphQLTaggedNode,
+	fragmentGql: GraphQLTaggedNode,
 	fragmentRef: TKey,
 ): FragmentResult<TKey> {
 	const environment = getRelayEnvironment();
 
 	// Note: We intentionally type the store as `any` here since
 	return createStore<any>((set) => {
-		const fragmentNode = relayGetFragment(fragmentInput);
+		const fragmentNode = relayGetFragment(fragmentGql);
 		const fragmentSelector = getSelector(fragmentNode, fragmentRef);
 
 		const snapshot = isPluralSelector(fragmentSelector)
 			? fragmentSelector.selectors.map((s) => environment.lookup(s))
 			: environment.lookup(fragmentSelector);
 
-		const subscriptions: Disposable[] = [];
+		const subscriptions: Set<Disposable> = new Set();
 
 		if (Array.isArray(snapshot)) {
 			let snapshots = snapshot;
@@ -55,7 +55,7 @@ export function getFragment<TKey extends KeyType>(
 			};
 
 			snapshot.forEach((s, i) => {
-				subscriptions.push(
+				subscriptions.add(
 					environment.subscribe(s, (nextSnapshot) => {
 						updateSnapshots(nextSnapshot, i);
 					}),
@@ -65,7 +65,7 @@ export function getFragment<TKey extends KeyType>(
 			setData();
 		} else {
 			set(snapshot.data);
-			subscriptions.push(
+			subscriptions.add(
 				environment.subscribe(snapshot, (nextSnapshot) => {
 					set(nextSnapshot.data);
 				}),
@@ -76,6 +76,7 @@ export function getFragment<TKey extends KeyType>(
 			subscriptions.forEach((subscription) => {
 				subscription.dispose();
 			});
+			subscriptions.clear();
 		};
 	});
 }

@@ -9,6 +9,7 @@ declare type Unsubscriber = () => void;
 export default function createStore<T>(
 	creator: (setValue: Subscriber<T>) => Unsubscriber,
 ): Readable<T> {
+	// NOTE: We intentionally use `any` here because we expect the store to actually be initialized in the store creator function:
 	return readable(null as any, (set) => {
 		return creator(set);
 	});
