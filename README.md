@@ -1,8 +1,10 @@
 <p align="center">
 	<img width="200" src="https://raw.githubusercontent.com/kesne/svelte-relay/master/website/static/img/svelte-relay-logo.png" alt="Svelte Relay Logo" />
 </p>
-<h2 align="center">Svelte Relay</h2>
+<h1 align="center">Svelte Relay</h1>
 <p align="center"><b>Easily use GraphQL in Svelte, powered by the production-ready Relay runtime.</b></p>
+
+## Features
 
 [Relay](https://relay.dev) bindings for [Svelte](https://svelte.dev).
 
