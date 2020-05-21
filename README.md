@@ -1,5 +1,5 @@
+<h1 align="center">Svelte Relay</p>
 <p align="center">
-	<h1>Svelte Relay</h1>
 	<img src="https://raw.githubusercontent.com/kesne/svelte-relay/master/website/static/img/svelte-relay-logo.png" alt="Svelte Relay Logo" />
 </p>
 
