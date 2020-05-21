@@ -3,10 +3,10 @@
 		getQuery,
 		setRelayEnvironment,
 		graphql,
-		QueryResult,
 	} from '../../packages/svelte-relay/src';
 	import { fetchQuery } from 'relay-runtime';
 	import Book from './Book.svelte';
+	import User from './User.svelte';
 	import environment from './environment';
 	import { AppQuery } from './__generated__/AppQuery.graphql';
 
@@ -19,6 +19,7 @@
 				firstName
 				lastName
 				randomNumber
+				...UserFragment_viewer
 			}
 			books {
 				...BookFragment_book
@@ -42,9 +43,10 @@
 	<p>...waiting</p>
 {:then data}
 	<p>Got data! {data.viewer.randomNumber}</p>
+	<User viewer={data.viewer} />
 	<ul>
 		{#each data.books as book}
-			<Book book={book} />
+			<Book {book} />
 		{/each}
 	</ul>
 {:catch error}

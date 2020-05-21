@@ -10,6 +10,7 @@ export type AppQueryResponse = {
         readonly firstName: string;
         readonly lastName: string;
         readonly randomNumber: number;
+        readonly " $fragmentRefs": FragmentRefs<"UserFragment_viewer">;
     };
     readonly books: ReadonlyArray<{
         readonly " $fragmentRefs": FragmentRefs<"BookFragment_book">;
@@ -29,6 +30,7 @@ query AppQuery {
     firstName
     lastName
     randomNumber
+    ...UserFragment_viewer
   }
   books {
     ...BookFragment_book
@@ -39,46 +41,39 @@ fragment BookFragment_book on Book {
   title
   author
 }
+
+fragment UserFragment_viewer on User {
+  randomNumber
+}
 */
 
 const node: ConcreteRequest = (function(){
 var v0 = {
   "alias": null,
   "args": null,
-  "concreteType": "User",
-  "kind": "LinkedField",
-  "name": "viewer",
-  "plural": false,
-  "selections": [
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "id",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "firstName",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "lastName",
-      "storageKey": null
-    },
-    {
-      "alias": null,
-      "args": null,
-      "kind": "ScalarField",
-      "name": "randomNumber",
-      "storageKey": null
-    }
-  ],
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+},
+v1 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "firstName",
+  "storageKey": null
+},
+v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "lastName",
+  "storageKey": null
+},
+v3 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "randomNumber",
   "storageKey": null
 };
 return {
@@ -88,7 +83,26 @@ return {
     "metadata": null,
     "name": "AppQuery",
     "selections": [
-      (v0/*: any*/),
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "User",
+        "kind": "LinkedField",
+        "name": "viewer",
+        "plural": false,
+        "selections": [
+          (v0/*: any*/),
+          (v1/*: any*/),
+          (v2/*: any*/),
+          (v3/*: any*/),
+          {
+            "args": null,
+            "kind": "FragmentSpread",
+            "name": "UserFragment_viewer"
+          }
+        ],
+        "storageKey": null
+      },
       {
         "alias": null,
         "args": null,
@@ -114,7 +128,21 @@ return {
     "kind": "Operation",
     "name": "AppQuery",
     "selections": [
-      (v0/*: any*/),
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "User",
+        "kind": "LinkedField",
+        "name": "viewer",
+        "plural": false,
+        "selections": [
+          (v0/*: any*/),
+          (v1/*: any*/),
+          (v2/*: any*/),
+          (v3/*: any*/)
+        ],
+        "storageKey": null
+      },
       {
         "alias": null,
         "args": null,
@@ -147,9 +175,9 @@ return {
     "metadata": {},
     "name": "AppQuery",
     "operationKind": "query",
-    "text": "query AppQuery {\n  viewer {\n    id\n    firstName\n    lastName\n    randomNumber\n  }\n  books {\n    ...BookFragment_book\n  }\n}\n\nfragment BookFragment_book on Book {\n  title\n  author\n}\n"
+    "text": "query AppQuery {\n  viewer {\n    id\n    firstName\n    lastName\n    randomNumber\n    ...UserFragment_viewer\n  }\n  books {\n    ...BookFragment_book\n  }\n}\n\nfragment BookFragment_book on Book {\n  title\n  author\n}\n\nfragment UserFragment_viewer on User {\n  randomNumber\n}\n"
   }
 };
 })();
-(node as any).hash = 'ee5e0ce7ebd4c549558326c856e30eda';
+(node as any).hash = '4336e1856947561a21dac165af5bfd9d';
 export default node;

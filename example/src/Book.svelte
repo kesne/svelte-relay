@@ -1,6 +1,6 @@
 <script type="typescript">
-	import { getFragment, graphql } from '../../packages/svelte-relay/src';
 	import { BookFragment_book$key } from './__generated__/BookFragment_book.graphql';
+	import { getFragment, graphql } from '../../packages/svelte-relay/src';
 
 	export let book: BookFragment_book$key;
 
