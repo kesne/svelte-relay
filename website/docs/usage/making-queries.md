@@ -6,8 +6,7 @@ A GraphQL query is a request that can be sent to a GraphQL server in combination
 
 To fetch and render a query in Svelte Relay, you can use the `getQuery()` function. This function accepts a GraphQL query. Let's set up our first query and a component to display the data:
 
-```svelte
-<!-- User.svelte -->
+```html title="User.svelte"
 <script>
 	import { getQuery, graphql } from 'svelte-relay';
 	const query = getQuery(graphql`
@@ -22,12 +21,13 @@ To fetch and render a query in Svelte Relay, you can use the `getQuery()` functi
 </script>
 ```
 
-> After creating this file, you will need to run the `relay-compiler` to process the newly-created GraphQL query and generate the appropriate files.
+:::info
+After creating this file, you will need to run the `relay-compiler` to process the newly-created GraphQL query and generate the appropriate files.
+:::
 
 To consume the data from the query, we can use the [Svelte await block](https://svelte.dev/tutorial/await-blocks). This allows us to wait for a Promise to resolve, and display different UIs based on the error or loading state.
 
-```svelte
-<!-- User.svelte -->
+```html title="User.svelte"
 {#await $query}
 	<div>Loading...</div>
 {:then data}

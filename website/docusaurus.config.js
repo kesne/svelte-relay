@@ -8,6 +8,9 @@ module.exports = {
 	projectName: 'svelte-relay', // Usually your repo name.
 	themeConfig: {
 		sidebarCollapsible: false,
+		prism: {
+			// additionalLanguages: ['svelte'],
+		},
 		navbar: {
 			title: 'Svelte Relay',
 			logo: {

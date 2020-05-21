@@ -6,8 +6,7 @@ In GraphQL, data in the server is updated using GraphQL Mutations. Mutations are
 
 To set up a mutation in Svelte Relay, you can use the `getMutation()` function. This function accepts a GraphQL query, and returns a function that can be used to perform the mutation.
 
-```svelte
-<!-- UserFirstName.svelte -->
+```html title="UserFirstName.svelte"
 <script>
 	import { getMutation, graphql } from 'svelte-relay';
 
@@ -37,7 +36,9 @@ To set up a mutation in Svelte Relay, you can use the `getMutation()` function. 
 </form>
 ```
 
-> After creating this file, you will need to run the `relay-compiler` to process the newly-created GraphQL query and generate the appropriate files.
+:::info
+After creating this file, you will need to run the `relay-compiler` to process the newly-created GraphQL query and generate the appropriate files.
+:::
 
 The options that the `commit()` function accepts is the same as the Relay `commitMutation()` method. Read [the Relay Documentation for more details](https://relay.dev/docs/en/mutations) on these options..
 
@@ -79,7 +80,7 @@ This state is useful for loading state, disabling buttons, and showing success s
 
 To read this state, you can use the [Svelte Store Auto-subscriptions](https://svelte.dev/tutorial/auto-subscriptions), and read the state by prefixing the variable with `$`.
 
-```svelte
+```html
 <script>
 	import { getMutation, graphql } from 'svelte-relay';
 

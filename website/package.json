@@ -12,8 +12,11 @@
     "@docusaurus/core": "^2.0.0-alpha.55",
     "@docusaurus/preset-classic": "^2.0.0-alpha.55",
     "classnames": "^2.2.6",
+    "highlightjs-svelte": "^1.0.5",
+    "prism-svelte": "^0.4.6",
     "react": "^16.8.4",
-    "react-dom": "^16.8.4"
+    "react-dom": "^16.8.4",
+    "react-syntax-highlighter": "^12.2.1"
   },
   "browserslist": {
     "production": [
