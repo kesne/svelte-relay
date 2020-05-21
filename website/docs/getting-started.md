@@ -2,7 +2,7 @@
 title: Getting Started
 ---
 
-Before getting started, it is best to understand the core concepts of Realy. It is likely best to read the [Relay Getting Started guide](https://relay.dev/docs/en/quick-start-guide) to familiarize yourself with Relay.
+Before getting started, it is best to understand the core concepts of Relay. It is likely best to read the [Relay Getting Started guide](https://relay.dev/docs/en/quick-start-guide) to familiarize yourself with Relay.
 
 Svelte Relay consists of two packages:
 
