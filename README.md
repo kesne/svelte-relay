@@ -1,4 +1,7 @@
-# svelte-relay
+<p align="center">
+	<h1>Svelte Relay</h1>
+	<img src="https://raw.githubusercontent.com/kesne/svelte-relay/master/website/static/img/svelte-relay-logo.png" alt="Svelte Relay Logo" />
+</p>
 
 [Relay](https://relay.dev) bindings for [Svelte](https://svelte.dev).
 
