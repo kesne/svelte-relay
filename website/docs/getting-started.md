@@ -30,8 +30,7 @@ npm install babel-plugin-relay graphql --save-dev
 
 Once the package is installed, you will need to configure Babel to use this plugin.
 
-```json
-// .babelrc
+```json title=".babelrc"
 {
 	"plugins": ["relay"]
 }
@@ -61,7 +60,7 @@ npm install relay-config --save-dev
 
 With this package installed, can then create a `relay.config.js` file, where you can provide configuration to the relay comiler.
 
-```js
+```js title="relay.config.js"
 module.exports = {
 	src: './src',
 	schema: './server/schema.graphql',
