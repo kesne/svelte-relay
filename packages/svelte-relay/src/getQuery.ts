@@ -13,7 +13,7 @@ export interface QueryResult<TQuery extends OperationType>
 	extends Readable<Promise<TQuery['response']>> {}
 
 export function getQuery<TQuery extends OperationType>(
-	query: GraphQLTaggedNode,
+	queryGql: GraphQLTaggedNode,
 	variables: TQuery['variables'] = {},
 ): QueryResult<TQuery> {
 	// Get the current Relay envrionment:
@@ -21,11 +21,10 @@ export function getQuery<TQuery extends OperationType>(
 
 	// Create the store that the UI can subscribe to get real-time updates:
 	const dataStore = createStore<Promise<TQuery['response']>>((set) => {
-		// The subscription for when the data in the store is updated:
-		let updateSubscription: Disposable;
+		const subscriptions: Set<Disposable> = new Set();
 
 		// Fetch the data from the network:
-		const request = getRequest(query);
+		const request = getRequest(queryGql);
 		const operation = createOperationDescriptor(request, variables);
 		const promise = environment
 			.execute({ operation })
@@ -33,21 +32,23 @@ export function getQuery<TQuery extends OperationType>(
 			.then(() => {
 				const snapshot = environment.lookup(operation.fragment);
 
-				updateSubscription = environment.subscribe(snapshot, (newSnapshot) => {
-					set(Promise.resolve(newSnapshot.data));
-				});
+				subscriptions.add(
+					environment.subscribe(snapshot, (newSnapshot) => {
+						set(Promise.resolve(newSnapshot.data));
+					}),
+				);
 
 				return snapshot.data;
 			});
 
 		set(promise);
 
-		const operationRetained = environment.retain(operation);
+		subscriptions.add(environment.retain(operation));
 		return () => {
-			operationRetained.dispose();
-			if (updateSubscription) {
-				updateSubscription.dispose();
-			}
+			subscriptions.forEach((sub) => {
+				sub.dispose();
+			});
+			subscriptions.clear();
 		};
 	});
 
