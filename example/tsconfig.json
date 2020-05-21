@@ -3,10 +3,6 @@
 	"compilerOptions": {
 		"strict": true,
 		"strictNullChecks": false,
-		"lib": ["dom", "esnext"],
-		"baseUrl": ".",
-		"paths": {
-			"svelte-relay": ["../packages/svelte-relay/src"]
-		}
+		"lib": ["dom", "esnext"]
 	}
 }

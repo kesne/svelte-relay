@@ -1,4 +1,4 @@
-export { graphql } from 'relay-runtime';
+export { graphql, fetchQuery } from 'relay-runtime';
 export { setRelayEnvironment, getRelayEnvironment } from './context';
-export { getFragment } from './getFragment';
-export { getQuery } from './getQuery';
+export { getFragment, FragmentResult } from './getFragment';
+export { getQuery, QueryResult } from './getQuery';

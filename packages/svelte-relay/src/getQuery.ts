@@ -1,34 +1,62 @@
 import { Readable, readable } from 'svelte/store';
-import { OperationType, GraphQLTaggedNode, fetchQuery } from 'relay-runtime';
+import {
+	OperationType,
+	GraphQLTaggedNode,
+	createOperationDescriptor,
+	getRequest,
+	Disposable,
+} from 'relay-runtime';
 import { getRelayEnvironment } from './context';
+import createStore from './createStore';
 
-interface QueryPromiseStore<T> extends Promise<T>, Readable<Promise<T>> {}
+export interface QueryResult<TQuery extends OperationType>
+	extends Readable<Promise<TQuery['response']>> {}
 
 export function getQuery<TQuery extends OperationType>(
 	query: GraphQLTaggedNode,
 	variables: TQuery['variables'] = {},
-): QueryPromiseStore<TQuery['response']> {
+): QueryResult<TQuery> {
 	// Get the current Relay envrionment:
 	const environment = getRelayEnvironment();
 
-	// Fetch the data from the network:
-	// TODO: We also want to subscribe to updates from the store.
-	const promise = fetchQuery(environment, query, variables);
-
 	// Create the store that the UI can subscribe to get real-time updates:
-	let updateStore: (data: any) => void;
-	const dataStore = readable(promise, (set) => {
-		updateStore = set;
+	const dataStore = createStore<Promise<TQuery['response']>>((set) => {
+		// The subscription for when the data in the store is updated:
+		let updateSubscription: Disposable;
+
+		// Fetch the data from the network:
+		const request = getRequest(query);
+		const operation = createOperationDescriptor(request, variables);
+		const promise = environment
+			.execute({ operation })
+			.toPromise()
+			.then(() => {
+				const snapshot = environment.lookup(operation.fragment);
+
+				updateSubscription = environment.subscribe(snapshot, (newSnapshot) => {
+					set(Promise.resolve(newSnapshot.data));
+				});
+
+				return snapshot.data;
+			});
+
+		set(promise);
+
+		const operationRetained = environment.retain(operation);
+		return () => {
+			operationRetained.dispose();
+			if (updateSubscription) {
+				updateSubscription.dispose();
+			}
+		};
 	});
 
-	// Return our promise-like store-like interface:
-	return {
-		...promise,
-		then: promise.then.bind(promise),
-		catch: promise.catch.bind(promise),
-		finally: promise.finally.bind(promise),
-		subscribe(...args) {
-			return dataStore.subscribe(...args);
-		},
+	// @ts-ignore: Adding to improve the UX if users mis-use the API:
+	dataStore.then = () => {
+		throw new Error(
+			'It looks like you tried to use the result of `getQuery()` directly in an #await block. Ensure that the `getQuery()` result is prefixed with `$` so that you subscribe to the latest store value. Further reading: https://svelte.dev/tutorial/auto-subscriptions',
+		);
 	};
+
+	return dataStore;
 }

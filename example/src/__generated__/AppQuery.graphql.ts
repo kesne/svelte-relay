@@ -5,14 +5,16 @@ import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
 export type AppQueryVariables = {};
 export type AppQueryResponse = {
-    readonly allFilms: {
-        readonly edges: ReadonlyArray<{
-            readonly node: {
-                readonly id: string;
-                readonly " $fragmentRefs": FragmentRefs<"MovieFragment_film">;
-            } | null;
-        } | null> | null;
-    } | null;
+    readonly viewer: {
+        readonly id: string;
+        readonly firstName: string;
+        readonly lastName: string;
+        readonly randomNumber: number;
+        readonly " $fragmentRefs": FragmentRefs<"UserFragment_viewer">;
+    };
+    readonly books: ReadonlyArray<{
+        readonly " $fragmentRefs": FragmentRefs<"BookFragment_book">;
+    }>;
 };
 export type AppQuery = {
     readonly response: AppQueryResponse;
@@ -23,19 +25,25 @@ export type AppQuery = {
 
 /*
 query AppQuery {
-  allFilms {
-    edges {
-      node {
-        id
-        ...MovieFragment_film
-      }
-    }
+  viewer {
+    id
+    firstName
+    lastName
+    randomNumber
+    ...UserFragment_viewer
+  }
+  books {
+    ...BookFragment_book
   }
 }
 
-fragment MovieFragment_film on Film {
+fragment BookFragment_book on Book {
   title
-  releaseDate
+  author
+}
+
+fragment UserFragment_viewer on User {
+  randomNumber
 }
 */
 
@@ -45,6 +53,27 @@ var v0 = {
   "args": null,
   "kind": "ScalarField",
   "name": "id",
+  "storageKey": null
+},
+v1 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "firstName",
+  "storageKey": null
+},
+v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "lastName",
+  "storageKey": null
+},
+v3 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "randomNumber",
   "storageKey": null
 };
 return {
@@ -57,44 +86,41 @@ return {
       {
         "alias": null,
         "args": null,
-        "concreteType": "FilmsConnection",
+        "concreteType": "User",
         "kind": "LinkedField",
-        "name": "allFilms",
+        "name": "viewer",
         "plural": false,
         "selections": [
+          (v0/*: any*/),
+          (v1/*: any*/),
+          (v2/*: any*/),
+          (v3/*: any*/),
           {
-            "alias": null,
             "args": null,
-            "concreteType": "FilmsEdge",
-            "kind": "LinkedField",
-            "name": "edges",
-            "plural": true,
-            "selections": [
-              {
-                "alias": null,
-                "args": null,
-                "concreteType": "Film",
-                "kind": "LinkedField",
-                "name": "node",
-                "plural": false,
-                "selections": [
-                  (v0/*: any*/),
-                  {
-                    "args": null,
-                    "kind": "FragmentSpread",
-                    "name": "MovieFragment_film"
-                  }
-                ],
-                "storageKey": null
-              }
-            ],
-            "storageKey": null
+            "kind": "FragmentSpread",
+            "name": "UserFragment_viewer"
+          }
+        ],
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "Book",
+        "kind": "LinkedField",
+        "name": "books",
+        "plural": true,
+        "selections": [
+          {
+            "args": null,
+            "kind": "FragmentSpread",
+            "name": "BookFragment_book"
           }
         ],
         "storageKey": null
       }
     ],
-    "type": "Root"
+    "type": "Query"
   },
   "kind": "Request",
   "operation": {
@@ -105,46 +131,38 @@ return {
       {
         "alias": null,
         "args": null,
-        "concreteType": "FilmsConnection",
+        "concreteType": "User",
         "kind": "LinkedField",
-        "name": "allFilms",
+        "name": "viewer",
         "plural": false,
+        "selections": [
+          (v0/*: any*/),
+          (v1/*: any*/),
+          (v2/*: any*/),
+          (v3/*: any*/)
+        ],
+        "storageKey": null
+      },
+      {
+        "alias": null,
+        "args": null,
+        "concreteType": "Book",
+        "kind": "LinkedField",
+        "name": "books",
+        "plural": true,
         "selections": [
           {
             "alias": null,
             "args": null,
-            "concreteType": "FilmsEdge",
-            "kind": "LinkedField",
-            "name": "edges",
-            "plural": true,
-            "selections": [
-              {
-                "alias": null,
-                "args": null,
-                "concreteType": "Film",
-                "kind": "LinkedField",
-                "name": "node",
-                "plural": false,
-                "selections": [
-                  (v0/*: any*/),
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "title",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "releaseDate",
-                    "storageKey": null
-                  }
-                ],
-                "storageKey": null
-              }
-            ],
+            "kind": "ScalarField",
+            "name": "title",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "author",
             "storageKey": null
           }
         ],
@@ -157,9 +175,9 @@ return {
     "metadata": {},
     "name": "AppQuery",
     "operationKind": "query",
-    "text": "query AppQuery {\n  allFilms {\n    edges {\n      node {\n        id\n        ...MovieFragment_film\n      }\n    }\n  }\n}\n\nfragment MovieFragment_film on Film {\n  title\n  releaseDate\n}\n"
+    "text": "query AppQuery {\n  viewer {\n    id\n    firstName\n    lastName\n    randomNumber\n    ...UserFragment_viewer\n  }\n  books {\n    ...BookFragment_book\n  }\n}\n\nfragment BookFragment_book on Book {\n  title\n  author\n}\n\nfragment UserFragment_viewer on User {\n  randomNumber\n}\n"
   }
 };
 })();
-(node as any).hash = '6910d593355ce75e41f1058681d8decb';
+(node as any).hash = '4336e1856947561a21dac165af5bfd9d';
 export default node;
