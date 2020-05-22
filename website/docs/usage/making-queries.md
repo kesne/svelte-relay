@@ -29,11 +29,11 @@ To consume the data from the query, we can use the [Svelte await block](https://
 
 ```html title="User.svelte"
 {#await $query}
-	<div>Loading...</div>
+<div>Loading...</div>
 {:then data}
-	<h1>{data.currentUser.firstName} {data.currentUser.lastName}</h1>
+<h1>{data.currentUser.firstName} {data.currentUser.lastName}</h1>
 {:catch error}
-	<div>Error: {error.message}</div>
+<div>Error: {error.message}</div>
 {/await}
 ```
 
@@ -41,6 +41,4 @@ The return value of `getQuery()` is a [Svelte Store](https://svelte.dev/tutorial
 
 ## Passing Variables
 
-## Using fragments
-
-TODO: Link to fragments doc, add example of using fragments.
+The `getQuery()` method accepts a second argument, which is the variables to provide to the query.

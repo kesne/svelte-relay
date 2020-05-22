@@ -1,7 +1,6 @@
 {
 	"name": "svelte-relay-monorepo",
 	"workspaces": [
-		"docs/",
 		"example/",
 		"packages/*"
 	],
