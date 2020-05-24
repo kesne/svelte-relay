@@ -6,6 +6,7 @@ module.exports = {
 			'usage/making-queries',
 			'usage/using-fragments',
 			'usage/mutations',
+			'usage/subscriptions'
 		],
 		'API Reference': ['api-reference'],
 	},
