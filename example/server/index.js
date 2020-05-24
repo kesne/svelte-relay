@@ -2,6 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const { ApolloServer, gql } = require('apollo-server');
 
+const wait = (number) => new Promise((resolve) => setTimeout(resolve, number));
+
 const books = [
 	{
 		title: 'Harry Potter and the Chamber of Secrets',
@@ -23,8 +25,14 @@ const typeDefs = gql(fs.readFileSync(path.join(__dirname, 'schema.graphql'), 'ut
 
 const resolvers = {
 	Query: {
-		books: () => books,
-		viewer: () => user,
+		books: async () => {
+			await wait(1000);
+			return books;
+		},
+		viewer: async () => {
+			await wait(1000);
+			return user;
+		},
 	},
 	Mutation: {
 		doSomethingToUser: () => user,
