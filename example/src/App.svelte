@@ -3,12 +3,12 @@
 		getQuery,
 		setRelayEnvironment,
 		graphql,
-		getRefetchContainer,
 	} from '../../packages/svelte-relay/src';
 	import { fetchQuery } from 'relay-runtime';
 	import Book from './Book.svelte';
 	import User from './User.svelte';
 	import Mutate from './Mutate.svelte';
+	import Experimental from './Experimental.svelte';
 	import environment from './environment';
 	import { AppQuery } from './__generated__/AppQuery.graphql';
 
@@ -29,28 +29,20 @@
 		}
 	`;
 
-	const refetchContainer = getRefetchContainer();
-	let page = 0;
-	$: query = refetchContainer(getQuery<AppQuery>(appQuery, { page }));
+	const query = getQuery<AppQuery>(appQuery);
 
 	function refetch() {
 		// Imperatively refetch, to test store updates:
 		fetchQuery(environment, appQuery, {});
 	}
-
-	$: console.log($query);
 </script>
 
 <h1>Svelte Relay</h1>
 
 <Mutate />
+<Experimental />
 
 <button on:click={refetch}>Refetch</button>
-
-<div>
-	RefetchContainer {$refetchContainer.isInFlight}
-	<button on:click={() => (page += 1)}>Trigger refetch</button>
-</div>
 
 {#await $query}
 	<p>...waiting</p>

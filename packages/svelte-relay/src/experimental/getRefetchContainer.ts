@@ -1,5 +1,5 @@
-import { readable, derived } from "svelte/store";
-import { QueryResult } from "./getQuery";
+import { readable, derived } from 'svelte/store';
+import { QueryResult } from '../getQuery';
 
 export function getRefetchContainer() {
 	let hasResolved = false;
