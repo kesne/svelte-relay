@@ -11,7 +11,7 @@
 		"@babel/polyfill": "^7.8.7",
 		"@babel/preset-env": "^7.9.6",
 		"@babel/preset-typescript": "^7.9.0",
-		"apollo-server": "^2.13.1",
+		"apollo-server": "^2.14.2",
 		"babel-loader": "^8.1.0",
 		"babel-plugin-relay": "^9.1.0",
 		"graphql": "^15.0.0",
