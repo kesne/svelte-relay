@@ -9,6 +9,6 @@
 	},
 	"dependencies": {
 		"relay-runtime": "^9.1.0",
-		"svelte": "^3.22.3"
+		"svelte": "^3.23.2"
 	}
 }
