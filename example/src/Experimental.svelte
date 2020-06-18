@@ -1,8 +1,6 @@
 <script type="typescript">
-	import {
-		getQuery,
-		graphql,
-	} from '../../packages/svelte-relay/src/experimental';
+	import { getQuery } from '../../packages/svelte-relay/src/experimental';
+	import { graphql } from '../../packages/svelte-relay/src';
 
 	let page = 0;
 	const [query, state] = getQuery(graphql`
@@ -29,5 +27,5 @@
 	{:catch error}
 		<p style="color: red">{error.message}</p>
 	{/await}
-	<button on:click={() => page += 1}>Next Page</button>
+	<button on:click={() => (page += 1)}>Next Page</button>
 </div>
