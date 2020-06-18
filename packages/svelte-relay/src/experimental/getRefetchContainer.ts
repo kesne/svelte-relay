@@ -1,17 +1,17 @@
-import { readable, derived } from 'svelte/store';
+import { readable, derived, Readable } from 'svelte/store';
 import { QueryResult } from '../getQuery';
 
 export function getRefetchContainer() {
 	let hasResolved = false;
-	let previousValue;
+	let previousValue: any;
 
-	let setState = () => {};
+	let setState = (state: any) => {};
 	const dataStore = readable({ isInFlight: false }, (set) => {
 		setState = set;
 	});
 
-	function refetchContainer<T extends QueryResult<any>>(query: T): T {
-		const derivedStore = derived(query, ($query, set) => {
+	function refetchContainer<T extends QueryResult<any>>(query: T): Readable<T> {
+		const derivedStore = derived(query, ($query: any, set: any) => {
 			setState({ isInFlight: true });
 
 			if (!hasResolved) {
@@ -31,7 +31,7 @@ export function getRefetchContainer() {
 			}
 		});
 
-		return derivedStore;
+		return derivedStore as any;
 	}
 
 	refetchContainer.subscribe = dataStore.subscribe.bind(dataStore);
