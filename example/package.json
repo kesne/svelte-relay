@@ -5,7 +5,8 @@
 	"scripts": {
 		"start": "webpack serve"
 	},
-	"dependencies": {
+	"browserslist": "last 1 chrome version",
+	"devDependencies": {
 		"@babel/core": "^7.14.8",
 		"@babel/preset-env": "^7.14.8",
 		"@babel/preset-typescript": "^7.14.5",
@@ -22,6 +23,7 @@
 		"svelte-preprocess": "^4.7.4",
 		"webpack": "^5.46.0",
 		"webpack-cli": "^4.7.2",
-		"webpack-dev-server": "^3.11.2"
+		"webpack-dev-server": "^3.11.2",
+		"relay-compiler-language-svelte": "workspace:*"
 	}
 }

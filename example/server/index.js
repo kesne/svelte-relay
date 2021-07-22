@@ -25,6 +25,7 @@ const typeDefs = gql(fs.readFileSync(path.join(__dirname, 'schema.graphql'), 'ut
 
 const resolvers = {
 	Query: {
+		echo: (_parent, { input }) => input,
 		books: async () => {
 			await wait(1000);
 			return books;
