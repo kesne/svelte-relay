@@ -80,6 +80,7 @@ importers:
     specifiers:
       '@docusaurus/core': ^2.0.0-alpha.55
       '@docusaurus/preset-classic': ^2.0.0-alpha.55
+      '@mdx-js/react': ^1.6.22
       classnames: ^2.2.6
       highlightjs-svelte: ^1.0.5
       prism-svelte: ^0.4.6
@@ -89,6 +90,7 @@ importers:
     dependencies:
       '@docusaurus/core': 2.0.0-beta.3_react-dom@16.14.0+react@16.14.0
       '@docusaurus/preset-classic': 2.0.0-beta.3_react-dom@16.14.0+react@16.14.0
+      '@mdx-js/react': 1.6.22_react@16.14.0
       classnames: 2.3.1
       highlightjs-svelte: 1.0.6
       prism-svelte: 0.4.7
@@ -3422,7 +3424,7 @@ packages:
   /axios/0.21.1:
     resolution: {integrity: sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==}
     dependencies:
-      follow-redirects: 1.14.1
+      follow-redirects: 1.14.1_debug@4.3.2
     transitivePeerDependencies:
       - debug
     dev: false
@@ -3439,7 +3441,7 @@ packages:
       loader-utils: 1.4.0
       make-dir: 3.1.0
       schema-utils: 2.7.1
-      webpack: 5.46.0_webpack-cli@4.7.2
+      webpack: 5.46.0
     dev: false
 
   /babel-plugin-apply-mdx-type-prop/1.6.22_@babel+core@7.12.9:
@@ -5455,7 +5457,7 @@ packages:
       react: 16.14.0
     dev: false
 
-  /follow-redirects/1.14.1:
+  /follow-redirects/1.14.1_debug@4.3.2:
     resolution: {integrity: sha512-HWqDgT7ZEkqRzBvc2s64vSZ/hfOceEol3ac/7tKwzuvEyWx3/4UegXh5oBOIotkGsObyk3xznnSRVADBgWSQVg==}
     engines: {node: '>=4.0'}
     peerDependencies:
@@ -5463,6 +5465,8 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
+    dependencies:
+      debug: 4.3.2_supports-color@6.1.0
     dev: false
 
   /for-in/1.0.2:
@@ -6036,7 +6040,7 @@ packages:
       lodash: 4.17.21
       pretty-error: 3.0.4
       tapable: 2.2.0
-      webpack: 5.46.0_webpack-cli@4.7.2
+      webpack: 5.46.0
     dev: false
 
   /htmlparser2/3.10.1:
@@ -6120,7 +6124,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.14.1
+      follow-redirects: 1.14.1_debug@4.3.2
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
@@ -10016,7 +10020,7 @@ packages:
       serialize-javascript: 6.0.0
       source-map: 0.6.1
       terser: 5.7.1
-      webpack: 5.46.0_webpack-cli@4.7.2
+      webpack: 5.46.0
     dev: false
 
   /terser/4.8.0:
@@ -10698,7 +10702,7 @@ packages:
       mime: 2.5.2
       mkdirp: 0.5.5
       range-parser: 1.2.1
-      webpack: 5.46.0_webpack-cli@4.7.2
+      webpack: 5.46.0
       webpack-log: 2.0.0
     dev: false
 
