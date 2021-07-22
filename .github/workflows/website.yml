@@ -15,7 +15,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '16.x'
-          working-directory: website
 
       - name: install pnpm
         run: npm i pnpm@latest -g
