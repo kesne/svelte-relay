@@ -24,7 +24,8 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: test build
-        run: pnpm run build
+        run: pnpm --filter docs run build
+
   gh-release:
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
