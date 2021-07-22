@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"scripts": {
 		"build": "tsc",
-		"prepare": "npm run build"
+		"prepublishOnly": "pnpm run build"
 	},
 	"dependencies": {
 		"relay-compiler": "^11.0.2",
@@ -16,6 +16,7 @@
 		"svelte": "^3.23.2"
 	},
 	"devDependencies": {
+		"@types/react-relay": "^11.0.2",
 		"@types/relay-compiler": "^8.0.1",
 		"svelte": "^3.40.1"
 	}
