@@ -5,8 +5,8 @@ import {
 	createOperationDescriptor,
 } from 'relay-runtime';
 import { readable, Readable } from 'svelte/store';
-import createStore from '../createStore';
-import { getRelayEnvironment } from '../context';
+import { createStore } from '../utils/createStore';
+import { getRelayEnvironment } from '../utils/context';
 
 interface Experimental_QueryResult<TQuery extends OperationType> {
 	(variables?: TQuery['variables']): Promise<TQuery['response']>;

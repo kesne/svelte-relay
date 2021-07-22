@@ -6,7 +6,7 @@ declare type Unsubscriber = () => void;
 /*
  * Wraps svelte's readable store, but without the requirement for providing an initial value up-front.
  */
-export default function createStore<T>(
+export function createStore<T>(
 	creator: (setValue: Subscriber<T>) => Unsubscriber,
 ): Readable<T> {
 	// NOTE: We intentionally use `any` here because we expect the store to actually be initialized in the store creator function:

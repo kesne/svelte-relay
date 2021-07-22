@@ -1,4 +1,4 @@
-import { Readable, readable } from 'svelte/store';
+import { Readable } from 'svelte/store';
 import {
 	OperationType,
 	GraphQLTaggedNode,
@@ -6,8 +6,8 @@ import {
 	getRequest,
 	Disposable,
 } from 'relay-runtime';
-import { getRelayEnvironment } from './context';
-import createStore from './createStore';
+import { getRelayEnvironment } from './utils/context';
+import { createStore } from './utils/createStore';
 
 export interface QueryResult<TQuery extends OperationType>
 	extends Readable<Promise<TQuery['response']>> {}

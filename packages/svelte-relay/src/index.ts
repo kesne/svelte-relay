@@ -1,5 +1,5 @@
 export { graphql, fetchQuery } from 'relay-runtime';
-export { setRelayEnvironment, getRelayEnvironment } from './context';
+export { setRelayEnvironment, getRelayEnvironment } from './utils/context';
 export { getFragment, FragmentResult } from './getFragment';
 export { getQuery, QueryResult } from './getQuery';
 export { getMutation, MutationResult } from './getMutation';

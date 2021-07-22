@@ -1,4 +1,4 @@
-import { getRelayEnvironment } from './context';
+import { getRelayEnvironment } from './utils/context';
 import { requestSubscription, GraphQLSubscriptionConfig, OperationType } from 'relay-runtime';
 import { onDestroy } from 'svelte';
 

@@ -6,7 +6,7 @@ import {
 	MutationParameters,
 	Disposable,
 } from 'relay-runtime';
-import { getRelayEnvironment } from './context';
+import { getRelayEnvironment } from './utils/context';
 
 type GetMutationConfig<TOperation extends MutationParameters> = Omit<
 	MutationConfig<TOperation>,

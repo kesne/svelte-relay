@@ -8,8 +8,8 @@ import {
 	Snapshot,
 } from 'relay-runtime';
 import { Readable } from 'svelte/store';
-import { getRelayEnvironment } from './context';
-import createStore from './createStore';
+import { getRelayEnvironment } from './utils/context';
+import { createStore } from './utils/createStore';
 
 type KeyReturnType<T extends KeyType> = (arg: T) => NonNullable<T[' $data']>;
 interface KeyType {
