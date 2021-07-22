@@ -3,13 +3,13 @@ import { GraphQLTagFinder } from 'relay-compiler/lib/language/RelayLanguagePlugi
 
 export function createFinder(finder: GraphQLTagFinder): GraphQLTagFinder {
 	return (text, filePath) => {
-		let jsSource: string;
+		let jsSource: string = '';
 
 		if (filePath.endsWith('.svelte')) {
 			// NOTE: This is a hack, but it's the only current way can get the raw script tag content from Svelte:
 			svelte.preprocess(text, {
 				script({ content }) {
-					jsSource = content;
+					jsSource += content;
 					return { code: content };
 				},
 			});
