@@ -8,11 +8,13 @@ export function setRelayEnvironment(environment: Environment) {
 }
 
 export function getRelayEnvironment(): Environment {
-	const environment = getContext(RELAY_CONTEXT);
+	const environment = getContext<Environment | undefined>(RELAY_CONTEXT);
+
 	if (!environment) {
 		throw new Error(
 			'The Relay Environment was not found in the current Svelte context. Make sure that you call `setRelayEnvironment(env)`.',
 		);
 	}
+
 	return environment;
 }

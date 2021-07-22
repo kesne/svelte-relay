@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+// @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
 export type MutateMutationVariables = {};
@@ -60,7 +61,8 @@ return {
     "metadata": null,
     "name": "MutateMutation",
     "selections": (v0/*: any*/),
-    "type": "Mutation"
+    "type": "Mutation",
+    "abstractKey": null
   },
   "kind": "Request",
   "operation": {
@@ -70,6 +72,7 @@ return {
     "selections": (v0/*: any*/)
   },
   "params": {
+    "cacheID": "6df85db68dbd6faa5015d7a0c55424c8",
     "id": null,
     "metadata": {},
     "name": "MutateMutation",

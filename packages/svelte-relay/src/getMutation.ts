@@ -24,6 +24,7 @@ export interface MutationResult<TOperation extends MutationParameters>
 	extends Readable<MutationState<TOperation>> {
 	// TODO: We should only mark this as optional of there are no variables in the query
 	// otherwise, this is actually required!
+	// This should be possible with tuples.
 	(config?: GetMutationConfig<TOperation>): Promise<TOperation['response']>;
 }
 
@@ -92,7 +93,7 @@ export function getMutation<TOperation extends MutationParameters>(
 	};
 
 	// Expose the store via subscription:
-	mutation.subscribe = stateStore.subscribe.bind(stateStore);
+	mutation.subscribe = (...args) => stateStore.subscribe(...args);
 
 	return mutation;
 }

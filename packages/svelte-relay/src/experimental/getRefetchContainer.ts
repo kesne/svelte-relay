@@ -34,7 +34,8 @@ export function getRefetchContainer() {
 		return derivedStore as any;
 	}
 
-	refetchContainer.subscribe = dataStore.subscribe.bind(dataStore);
+	// @ts-ignore
+	refetchContainer.subscribe = (...args) => dataStore.subscribe(...args);
 
 	return refetchContainer;
 }

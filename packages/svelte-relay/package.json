@@ -8,7 +8,12 @@
 		"prepare": "npm run build"
 	},
 	"dependencies": {
-		"relay-runtime": "^9.1.0",
+		"relay-runtime": "^11.0.2"
+	},
+	"peerDependencies": {
 		"svelte": "^3.23.2"
+	},
+	"devDependencies": {
+		"svelte": "^3.40.1"
 	}
 }

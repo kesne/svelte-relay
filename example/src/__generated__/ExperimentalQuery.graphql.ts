@@ -1,5 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
+// @ts-nocheck
 
 import { ConcreteRequest } from "relay-runtime";
 export type ExperimentalQueryVariables = {};
@@ -78,7 +79,8 @@ return {
     "metadata": null,
     "name": "ExperimentalQuery",
     "selections": (v0/*: any*/),
-    "type": "Query"
+    "type": "Query",
+    "abstractKey": null
   },
   "kind": "Request",
   "operation": {
@@ -88,6 +90,7 @@ return {
     "selections": (v0/*: any*/)
   },
   "params": {
+    "cacheID": "566fad40ebaea5b9018bd809ec234ff8",
     "id": null,
     "metadata": {},
     "name": "ExperimentalQuery",

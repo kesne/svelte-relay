@@ -8,12 +8,15 @@
 		"prepare": "npm run build"
 	},
 	"dependencies": {
-		"relay-compiler": "^9.1.0",
-		"relay-compiler-language-typescript": "^12.0.3",
-		"relay-runtime": "^9.1.0",
+		"relay-compiler": "^11.0.2",
+		"relay-compiler-language-typescript": "^14.0.0",
+		"relay-runtime": "^11.0.2"
+	},
+	"peerDependencies": {
 		"svelte": "^3.23.2"
 	},
 	"devDependencies": {
-		"@types/relay-compiler": "^8.0.0"
+		"@types/relay-compiler": "^8.0.1",
+		"svelte": "^3.40.1"
 	}
 }
