@@ -17,7 +17,7 @@
 	import { setRelayEnvironment } from 'svelte-relay';
 	import myEnvironment from './environment';
 
-	setRelayEnvironment(setRelayEnvironment);
+	setRelayEnvironment(myEnvironment);
 </script>
 ```
 
