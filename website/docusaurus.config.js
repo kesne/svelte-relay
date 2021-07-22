@@ -17,7 +17,7 @@ module.exports = {
 				alt: 'Svelte Relay Logo',
 				src: 'img/svelte-relay-logo.svg',
 			},
-			links: [
+			items: [
 				{
 					to: 'docs/getting-started',
 					activeBasePath: 'docs',
@@ -34,36 +34,36 @@ module.exports = {
 		footer: {
 			style: 'dark',
 			links: [
-				{
-					title: 'Docs',
-					items: [
-						{
-							label: 'Style Guide',
-							to: 'docs/',
-						},
-						{
-							label: 'Second Doc',
-							to: 'docs/doc2/',
-						},
-					],
-				},
-				{
-					title: 'Community',
-					items: [
-						{
-							label: 'Stack Overflow',
-							href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-						},
-						{
-							label: 'Discord',
-							href: 'https://discordapp.com/invite/docusaurus',
-						},
-						{
-							label: 'Twitter',
-							href: 'https://twitter.com/docusaurus',
-						},
-					],
-				},
+				// {
+				// 	title: 'Docs',
+				// 	items: [
+				// 		{
+				// 			label: 'Style Guide',
+				// 			to: 'docs/',
+				// 		},
+				// 		{
+				// 			label: 'Second Doc',
+				// 			to: 'docs/doc2/',
+				// 		},
+				// 	],
+				// },
+				// {
+				// 	title: 'Community',
+				// 	items: [
+				// 		{
+				// 			label: 'Stack Overflow',
+				// 			href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+				// 		},
+				// 		{
+				// 			label: 'Discord',
+				// 			href: 'https://discordapp.com/invite/docusaurus',
+				// 		},
+				// 		{
+				// 			label: 'Twitter',
+				// 			href: 'https://twitter.com/docusaurus',
+				// 		},
+				// 	],
+				// },
 				{
 					title: 'More',
 					items: [

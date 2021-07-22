@@ -1,5 +1,5 @@
 {
-  "name": "docs-next",
+  "name": "docs",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -11,6 +11,7 @@
   "dependencies": {
     "@docusaurus/core": "^2.0.0-alpha.55",
     "@docusaurus/preset-classic": "^2.0.0-alpha.55",
+    "@mdx-js/react": "^1.6.22",
     "classnames": "^2.2.6",
     "highlightjs-svelte": "^1.0.5",
     "prism-svelte": "^0.4.6",
